@@ -54,7 +54,9 @@ allprojects {
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-ide")
         maven("https://kotlin.bintray.com/kotlin-ide-plugin-dependencies")
         maven("https://jetbrains.bintray.com/intellij-third-party-dependencies")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-compiler-for-ide")
+//        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-compiler-for-ide")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-ide-plugin-dependencies")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
     }
     afterEvaluate {
         dependencies {
