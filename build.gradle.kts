@@ -42,6 +42,7 @@ val copyJSDependencies by tasks.creating(Copy::class) {
 }
 
 plugins {
+    war
     id("org.springframework.boot") version "2.4.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.30"
@@ -100,6 +101,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:core:202-$kotlinIdeVersion-IJ8194.7")
     implementation(project(":executors", configuration = "default"))
     implementation(project(":common", configuration = "default"))
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
@@ -157,4 +159,15 @@ val buildLambda by tasks.creating(Zip::class) {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    //https://stackoverflow.com/questions/57727150/kotlin-script-engine-with-spring-boot-self-running-war
+    requiresUnpack("**/kotlin-*.jar")
+    requiresUnpack("**/kotlinx-*.jar")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootWar> {
+    //https://stackoverflow.com/questions/57727150/kotlin-script-engine-with-spring-boot-self-running-war
+    requiresUnpack("**/kotlin-*.jar")
+    requiresUnpack("**/kotlinx-*.jar")
 }
